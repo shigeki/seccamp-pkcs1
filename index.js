@@ -64,7 +64,7 @@ function writeRes(res, page) {
 
 function writeResError(res, error) {
   var page = '<html><head><title>Data Error</title></head>' +
-      '<body>Data Error in ' + error +
+      '<body>Data Error' +
       '<br><a href="/">Return</a></body></html>';
   writeRes(res, page);
   return false;
@@ -76,18 +76,18 @@ function ErrorCheck(req, res, modulus, public_exponent, resolved_prime) {
   var nohex_pattern = /[^0-9,a-f,A-F]/;
   var no_decimal_pattern = /[^0-9]/;
     if (nohex_pattern.test(modulus)) {
-      ret = writeResError(res, 'Modulus: ' + modulus);
-      outputErrorlog(req, 'Modulus Error: ' + modulus);
+      ret = writeResError(res, 'Modulus');
+      outputErrorlog(req, 'Modulus Error ');
     }
 
     if (no_decimal_pattern.test(public_exponent)) {
-      ret = writeResError(res, 'Public Exponent: ' + public_exponent);
-      outputErrorlog(req, 'Public Exponent Error: ' + public_exponent);
+      ret = writeResError(res, 'Public Exponent ');
+      outputErrorlog(req, 'Public Exponent Error ');
     }
 
     if (nohex_pattern.test(resolved_prime)) {
-      ret = writeResError(res, 'Resolved Prime: ' + resolved_prime);
-      outputErrorlog(req, 'Resolved Prime Error: ' + resolved_prime);
+      ret = writeResError(res, 'Resolved Prime: ');
+      outputErrorlog(req, 'Resolved Prime Error: ');
     }
 
   return ret;
